@@ -1,0 +1,83 @@
+document.onload(function(){
+	
+	var easyQuestions = [
+		{
+			question:,
+			choices:[],
+			correctAnswer:
+		},
+		{
+			question:,
+			choices:[],
+			correctAnswer:
+		},
+		{
+			question:,
+			choices:[],
+			correctAnswer:
+		},
+		{
+			question:,
+			choices:[],
+			correctAnswer:
+		},
+		{
+			question:,
+			choices:[],
+			correctAnswer:
+		}];
+	
+	var mediumQuestions = [
+		{
+			question:,
+			choices:[],
+			correctAnswer:
+		},
+		{
+			question:,
+			choices:[],
+			correctAnswer:
+		},
+		{
+			question:,
+			choices:[],
+			correctAnswer:
+		},
+		{
+			question:,
+			choices:[],
+			correctAnswer:
+		},
+		{
+			question:,
+			choices:[],
+			correctAnswer:
+		}];
+	
+	var hardQuestions = [
+		{
+			question:,
+			choices:[],
+			correctAnswer:
+		},
+		{
+			question:,
+			choices:[],
+			correctAnswer:
+		},
+		{
+			question:,
+			choices:[],
+			correctAnswer:
+		},
+		{
+			question:,
+			choices:[],
+			correctAnswer:
+		},
+		{
+			question:,
+			choices:[],
+			correctAnswer:
+		}];
+})
