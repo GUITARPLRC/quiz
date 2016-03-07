@@ -24,7 +24,7 @@ document.onload(function(){
 		{
 			question:"What is the capital of the United States of America?",
 			choices:["Washington, D.C.","Seattle","Maryland","Canada"],
-			correctAnswer:
+			correctAnswer:0
 		}];
 	
 	var mediumQuestions = [
@@ -39,45 +39,48 @@ document.onload(function(){
 			correctAnswer:0
 		},
 		{
-			question:"",
-			choices:["","","",""],
-			correctAnswer:
+			question:"What is the biggest continent in the world?",
+			choices:["Europe","Asia","Canada","Alaska"],
+			correctAnswer:1
 		},
 		{
-			question:"",
-			choices:["","","",""],
-			correctAnswer:
+			question:"Which comic book superhero does not have any 'special powers'?",
+			choices:["Superman","Flash","Batman","Pinocchio"],
+			correctAnswer:2
 		},
 		{
-			question:"",
-			choices:["","","",""],
-			correctAnswer:
+			question:"Who is usually credited for the invention of the light bulb?",
+			choices:["Thomas Edison","Albert Einstein","Geroge Washington","Isaac Newton"],
+			correctAnswer:0
 		}];
 	
 	var hardQuestions = [
 		{
-			question:"",
-			choices:["","","",""],
-			correctAnswer:
+			question:"What does the 'www' stand for in 'www.google.com'?",
+			choices:["webpage","world wide web","whiskey while working","internet"],
+			correctAnswer:1
 		},
 		{
-			question:"",
-			choices:["","","",""],
-			correctAnswer:
+			question:"What is the square root of the number 25?",
+			choices:["1","7.43","625","5"],
+			correctAnswer:3
 		},
 		{
-			question:"",
-			choices:["","","",""],
-			correctAnswer:
+			question:"What American icon wore a 'coonskin cap?",
+			choices:["Henry Ford","Paul Bunyan","Davy Crockett","John Adams"],
+			correctAnswer:2
 		},
 		{
-			question:"",
-			choices:["","","",""],
-			correctAnswer:
+			question:"What kind of car did the 'Dukes of Hazard' drive",
+			choices:["Dodge Charger","Dodge Neon","Chevrolet Camaro","Ford Thunderbird"],
+			correctAnswer:0
 		},
 		{
-			question:"",
-			choices:["","","",""],
-			correctAnswer:
+			question:"What kind of animal was Lassie",
+			choices:["elephant","horse","dolphin","dog"],
+			correctAnswer:3
 		}];
+		
+		var diff = 0; //difficulty
+
 })
