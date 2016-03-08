@@ -1,4 +1,4 @@
-document.onload(function() {
+(function() {
 
   var easyQuestions = [{
     question: "What is the first name of the tennis playing sister of Serena Williams?",
@@ -81,7 +81,21 @@ document.onload(function() {
 	var check = document.getElementById("submit");
 	var next = document.getElementById("next");
 
-	answerButtons.visibility = hidden;
+	for (var i = 0; i < 4; i++) {
+			answerButtons[i].style.visibility = "hidden";
+	}
+	
+	check.disabled = true;
+	next.disabled = true;
+	
+	right = 0;
+	wrong = 0;
+	diff = 0;
+	correct.textContent = right;
+	missed.textContent = wrong;
+		
+	start.addEventListener("click", startQuiz, false);
+	check.addEventListener("click", submitAnswer, false );
 
   function getDifficulty() { //sets difficulty of questions
 		
@@ -89,7 +103,7 @@ document.onload(function() {
 				diff = 1;
 		} else if (diffButtons[1].checked = true) {
 				diff = 2;
-		} else {
+		} else if (diffButtons[2],checked = true) {
 				diff = 3;
 		}
 		
@@ -98,45 +112,53 @@ document.onload(function() {
   function startQuiz() {
 		
 		next.disabled = true;
+		start.disabled = true;
+		check.disabled = false;
+		getDifficulty();
 		randomNumber();
+		for (var i = 0; i < 4; i++) {
+			answerButtons[i].style.visibility = "visible";
+	}
 		
 		if (diff === 1) {
-				question.textContent = easyQuestions[randomNum];
+				question.textContent = easyQuestions[randomNum]["question"];
 				for (var i = 0; i < 4; i++) {
-					answerButtons[i].textContent = easyQuestions[randomNum][choices];
+					answerButtons[i].value = easyQuestions[randomNum]["choices"];
 				}
 		} else if (diff === 2) {
-				question.textContent = mediumQuestions[randomNum];
+				question.textContent = mediumQuestions[randomNum]["question"];
 				for (var i = 0; i < 4; i++) {
-					answerButtons[i].textContent = mediumQuestions[randomNum][choices];
+					answerButtons[i].value = mediumQuestions[randomNum]["choices"];
 				}
-		} else {
-				question.textContent = hardQuestion[randomNum];
+		} else if (diff === 3) {
+				question.textContent = hardQuestions[randomNum]["question"];
 				for (var i = 0; i < 4; i++) {
-					answerButtons[i].textContent = hardQuestions[randomNum][choices];
+					answerButtons[i].value = hardQuestions[randomNum]["choices"];
 				}
 		}
 		
 	}
+	
+	
 	
 	function submitAnswer() {  //check answer button check vs. correct answer
 		
 		for (var i = 0; i < 4; i++) {
 			if (answerButtons[i].checked = true) {
 				if (diff === 1) {
-					if (answerButtons[i].textContent === easyQuestion[randomNum][correctAnswer]) { 
+					if (answerButtons[i].value === easyQuestions[randomNum][correctAnswer]) { 
 						right++;
 					} else {
 						wrong++;
 					}
 				} else if (diff === 2) {
-					if (answerButtons[i].textContent === mediumQuestion[randomNum][correctAnswer]) {
+					if (answerButtons[i].value === mediumQuestions[randomNum][correctAnswer]) {
 						right++;
 					} else {
 						wrong++;
 					}
-				} else {
-					if (answerButtons[i].textContent === hardQuestions[choices][hardQuestion[randomNum][correctAnswer]]) {
+				} else if (diff === 3) {
+					if (answerButtons[i].value === hardQuestions[randomNum][correctAnswer]) {
 						right++;
 					} else {
 						wrong++;
@@ -153,7 +175,9 @@ document.onload(function() {
 		
 		next.disabled = true;
 		
-		
+		for (var i = 0; i < 4; i++) {
+			answerButtons[i].checked = false;
+		}
 		
 	}
 
@@ -175,7 +199,10 @@ document.onload(function() {
 		diff = 0;
 		correct.textContent = right;
 		missed.textContent = wrong;
-		
+		for (var i = 0; i < 4; i++) {
+			answerButtons[i].checked = false;
+		}
+		start.disabled = false;
 	}
   
-})
+})()

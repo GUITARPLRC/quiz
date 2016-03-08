@@ -12,22 +12,25 @@
 	<ul>
 		<li>Choose Difficulty</li>
 		<li>Click 'Start Game' button</li>
-		<li>Choose correct answer</li>
+		<li>Guess the correct answer</li>
 		<li>Click 'Check Guess'</li>
 		<li>Click 'Next Question'</li>
 		<li>When done, click reset button to play again!</li>
 	</ul>
-	<button class="diff" type="radio" value=1>Easy</button>
-	<button class="diff" type="radio" value=2>Medium</button>
-	<button class="diff" type="radio" value=3>Hard</button>
+	<input class="diff" name="diff" type="radio" value=1>Easy</input>
+	<input class="diff" name="diff" type="radio" value=2>Medium</input>
+	<input class="diff" name="diff" type="radio" value=3>Hard</input>
+	<br />
+	<h4>Correct Answers: <div id="correct"></div></h4>
+	<h4>Wrong Answers: <div id="missed"></div></h4>
 	<br />
 	<div id="question">
 	</div>
 	<br />
-	<button class="answer" type="radio"></button>
-	<button class="answer" type="radio"></button>
-	<button class="answer" type="radio"></button>
-	<button class="answer" type="radio"></button>
+	<input class="answer" name="answer" type="radio"></input>
+	<input class="answer" name="answer" type="radio"></input>
+	<input class="answer" name="answer" type="radio"></input>
+	<input class="answer" name="answer" type="radio"></input>
 	<br />
 	<button id="start">Start Game</button>
 	<button id="submit">Check Answer</button>
@@ -36,6 +39,6 @@
 
 
 
-	<script src="quiz.js">
+	<script src="quiz.js"></script>
 </body>
 </html>
