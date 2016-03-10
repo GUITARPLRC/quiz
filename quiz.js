@@ -103,7 +103,7 @@
 				diff = 1;
 		} else if (diffButtons[1].checked = true) {
 				diff = 2;
-		} else if (diffButtons[2],checked = true) {
+		} else if (diffButtons[2].checked = true) {
 				diff = 3;
 		}
 		
@@ -123,17 +123,17 @@
 		if (diff === 1) {
 				question.textContent = easyQuestions[randomNum]["question"];
 				for (var i = 0; i < 4; i++) {
-					answerButtons[i].value = easyQuestions[randomNum]["choices"];
+					answerButtons[i].value = easyQuestions[randomNum]["choices"][i];
 				}
 		} else if (diff === 2) {
 				question.textContent = mediumQuestions[randomNum]["question"];
 				for (var i = 0; i < 4; i++) {
-					answerButtons[i].value = mediumQuestions[randomNum]["choices"];
+					answerButtons[i].value = mediumQuestions[randomNum]["choices"][i];
 				}
 		} else if (diff === 3) {
 				question.textContent = hardQuestions[randomNum]["question"];
 				for (var i = 0; i < 4; i++) {
-					answerButtons[i].value = hardQuestions[randomNum]["choices"];
+					answerButtons[i].value = hardQuestions[randomNum]["choices"][i];
 				}
 		}
 		
@@ -146,19 +146,19 @@
 		for (var i = 0; i < 4; i++) {
 			if (answerButtons[i].checked = true) {
 				if (diff === 1) {
-					if (answerButtons[i].value === easyQuestions[randomNum][correctAnswer]) { 
+					if (answerButtons[i].value === easyQuestions[randomNum]["correctAnswer"]) { 
 						right++;
 					} else {
 						wrong++;
 					}
 				} else if (diff === 2) {
-					if (answerButtons[i].value === mediumQuestions[randomNum][correctAnswer]) {
+					if (answerButtons[i].value === mediumQuestions[randomNum]["correctAnswer"]) {
 						right++;
 					} else {
 						wrong++;
 					}
 				} else if (diff === 3) {
-					if (answerButtons[i].value === hardQuestions[randomNum][correctAnswer]) {
+					if (answerButtons[i].value === hardQuestions[randomNum]["correctAnswer"]) {
 						right++;
 					} else {
 						wrong++;
