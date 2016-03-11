@@ -67,10 +67,9 @@
   }];
 
   var diff = 0; //difficulty
-  var previousNumber = 6;
 	var right = 0;
 	var wrong = 0;
-	var randomNum;
+	var counter = 0; // keep track of which question the user is on
   var diffButtons = document.getElementsByClassName("diff");
   var answerButtons = document.getElementsByClassName("answer");
 	var resetButton = document.getElementById("reset");
@@ -96,6 +95,8 @@
 		
 	start.addEventListener("click", startQuiz, false);
 	check.addEventListener("click", submitAnswer, false );
+	next.addEventListener("click", nextQuestion, false);
+	resetButton.addEventListener("click", resetAll, false);
 
   function getDifficulty() { //sets difficulty of questions
 		
@@ -115,55 +116,55 @@
 		start.disabled = true;
 		check.disabled = false;
 		getDifficulty();
-		randomNumber();
+		
 		for (var i = 0; i < 4; i++) {
 			answerButtons[i].style.visibility = "visible";
-	}
+		}
 		
 		if (diff === 1) {
-				question.textContent = easyQuestions[randomNum]["question"];
+				question.textContent = easyQuestions[counter]["question"];
 				for (var i = 0; i < 4; i++) {
-					answerButtons[i].value = easyQuestions[randomNum]["choices"][i];
+					answerButtons[i].textContent = easyQuestions[counter]["choices"][i];
 				}
 		} else if (diff === 2) {
-				question.textContent = mediumQuestions[randomNum]["question"];
+				question.textContent = mediumQuestions[counter]["question"];
 				for (var i = 0; i < 4; i++) {
-					answerButtons[i].value = mediumQuestions[randomNum]["choices"][i];
+					answerButtons[i].textContent = mediumQuestions[counter]["choices"][i];
 				}
 		} else if (diff === 3) {
-				question.textContent = hardQuestions[randomNum]["question"];
+				question.textContent = hardQuestions[counter]["question"];
 				for (var i = 0; i < 4; i++) {
-					answerButtons[i].value = hardQuestions[randomNum]["choices"][i];
+					answerButtons[i].textContent = hardQuestions[counter]["choices"][i];
 				}
 		}
 		
 	}
 	
-	
-	
-	function submitAnswer() {  //check answer button check vs. correct answer
+	function submitAnswer() {  //check answer check vs. correct answer
 		
 		for (var i = 0; i < 4; i++) {
 			if (answerButtons[i].checked = true) {
 				if (diff === 1) {
-					if (answerButtons[i].value === easyQuestions[randomNum]["correctAnswer"]) { 
+					if (answerButtons[i].value === easyQuestions[counter]["correctAnswer"]) { 
 						right++;
 					} else {
 						wrong++;
 					}
 				} else if (diff === 2) {
-					if (answerButtons[i].value === mediumQuestions[randomNum]["correctAnswer"]) {
+					if (answerButtons[i].value === mediumQuestions[counter]["correctAnswer"]) {
 						right++;
 					} else {
 						wrong++;
 					}
 				} else if (diff === 3) {
-					if (answerButtons[i].value === hardQuestions[randomNum]["correctAnswer"]) {
+					if (answerButtons[i].value === hardQuestions[counter]["correctAnswer"]) {
 						right++;
 					} else {
 						wrong++;
 					}
 				}
+			} else {
+				alert("Please select a guess");
 			}
 		}
 		
@@ -173,36 +174,56 @@
 	
 	function nextQuestion() {
 		
+		counter++;
+		
+		if (counter > 5) {
+			question.textContent = "You have reached the end of the quiz";
+		}
+		
 		next.disabled = true;
 		
 		for (var i = 0; i < 4; i++) {
 			answerButtons[i].checked = false;
 		}
 		
-	}
-
-  function randomNumber() { //generate random number 0-5
-		
-		randomNum = Math.floor(Math.random() * 5);
-		
-		if (randomNum === previousNumber) {
-				randomNumber();
-		} else {
-				previousNumber = randomNum;
+		if (diff === 1) {
+				question.textContent = easyQuestions[counter]["question"];
+				for (var i = 0; i < 4; i++) {
+					answerButtons[i].value = easyQuestions[counter]["choices"][i];
+				}
+		} else if (diff === 2) {
+				question.textContent = mediumQuestions[counter]["question"];
+				for (var i = 0; i < 4; i++) {
+					answerButtons[i].textContent = mediumQuestions[counter]["choices"][i];
+				}
+		} else if (diff === 3) {
+				question.textContent = hardQuestions[counter]["question"];
+				for (var i = 0; i < 4; i++) {
+					answerButtons[i].textContent = hardQuestions[counter]["choices"][i];
+				}
 		}
 		
-  }
+	}
 	
 	function resetAll() {
+		
 		right = 0;
 		wrong = 0;
 		diff = 0;
+		coutner = 0;
+		question.textContent = "";
 		correct.textContent = right;
 		missed.textContent = wrong;
+		
 		for (var i = 0; i < 4; i++) {
 			answerButtons[i].checked = false;
+			answerButtons[i].textContent = "";
 		}
+		
 		start.disabled = false;
+		next.disabled = true;
+		check.disabled = true;
+		
 	}
   
 })()

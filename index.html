@@ -3,11 +3,13 @@
 <head>
 
 	<title>Quiz Time</title>
+	<link rel="stylesheet" href="style.css">
 
 </head>
 <body>
 
 	<h1>Quiz Time</h1>
+	
 	<h3>Directions:</h2>
 	<ul>
 		<li>Choose Difficulty</li>
@@ -17,21 +19,29 @@
 		<li>Click 'Next Question'</li>
 		<li>When done, click reset button to play again!</li>
 	</ul>
+	
 	<input class="diff" name="diff" type="radio" value=1>Easy</input>
 	<input class="diff" name="diff" type="radio" value=2>Medium</input>
 	<input class="diff" name="diff" type="radio" value=3>Hard</input>
+	
 	<br />
+	
 	<h4>Correct Answers: <div id="correct"></div></h4>
 	<h4>Wrong Answers: <div id="missed"></div></h4>
+	
 	<br />
-	<div id="question">
-	</div>
+	
+	<div id="question"></div>
+	
 	<br />
-	<input class="answer" name="answer" type="radio" value=0></input>
-	<input class="answer" name="answer" type="radio" value=1></input>
-	<input class="answer" name="answer" type="radio" value=2></input>
-	<input class="answer" name="answer" type="radio" value=3></input>
+	
+	<input class="answer" type="radio" value=0></input>
+	<input class="answer" type="radio" value=1></input>
+	<input class="answer" type="radio" value=2></input>
+	<input class="answer" type="radio" value=3></input>
+	
 	<br />
+	
 	<button id="start">Start Game</button>
 	<button id="submit">Check Answer</button>
 	<button id="next">Next Question</button>
