@@ -89,23 +89,24 @@
 	
 	right = 0;
 	wrong = 0;
-	diff = 0;
 	correct.textContent = right;
 	missed.textContent = wrong;
 		
 	start.addEventListener("click", startQuiz, false);
-	check.addEventListener("click", submitAnswer, false );
+	check.addEventListener("click", submitAnswer, false);
 	next.addEventListener("click", nextQuestion, false);
 	resetButton.addEventListener("click", resetAll, false);
 
   function getDifficulty() { //sets difficulty of questions
 		
-		if (diffButtons[0].checked = true) {
-				diff = 1;
-		} else if (diffButtons[1].checked = true) {
-				diff = 2;
-		} else if (diffButtons[2].checked = true) {
+		diff = 0;
+		
+		if (diffButtons[2].checked === true) {
 				diff = 3;
+		} else if (diffButtons[1].checked === true) {
+				diff = 2;
+		} else {
+				diff = 1;
 		}
 		
   }
@@ -163,10 +164,11 @@
 						wrong++;
 					}
 				}
-			} else {
-				alert("Please select a guess");
 			}
 		}
+		
+		correct.textContent = right;
+		missed.textContent = wrong;
 		
 		next.disabled = false;
 		
@@ -210,7 +212,7 @@
 		right = 0;
 		wrong = 0;
 		diff = 0;
-		coutner = 0;
+		counter = 0;
 		question.textContent = "";
 		correct.textContent = right;
 		missed.textContent = wrong;
