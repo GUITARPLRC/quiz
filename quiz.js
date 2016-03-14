@@ -142,68 +142,52 @@
 	}
 	
 	function submitAnswer() {  //check answer check vs. correct answer
-		
-		for (var i = 0; i < 4; i++) {
-			if (answerButtons[i].checked = true) {
-				if (diff === 1) {
-					if (answerButtons[i].value === easyQuestions[counter]["correctAnswer"]) { 
-						right++;
-					} else {
-						wrong++;
-					}
-				} else if (diff === 2) {
-					if (answerButtons[i].value === mediumQuestions[counter]["correctAnswer"]) {
-						right++;
-					} else {
-						wrong++;
-					}
-				} else if (diff === 3) {
-					if (answerButtons[i].value === hardQuestions[counter]["correctAnswer"]) {
-						right++;
-					} else {
-						wrong++;
-					}
-				}
-			}
-		}
+        
+        check.disabled = true;
+        
+		for (var i =  0; i < 4; i++) {
+            
+        }
 		
 		correct.textContent = right;
 		missed.textContent = wrong;
 		
-		next.disabled = false;
-		
 	}
-	
+	 
 	function nextQuestion() {
 		
 		counter++;
 		
-		if (counter > 5) {
-			question.textContent = "You have reached the end of the quiz";
-		}
-		
+        check.disabled = false;
 		next.disabled = true;
-		
+            
 		for (var i = 0; i < 4; i++) {
 			answerButtons[i].checked = false;
 		}
-		
-		if (diff === 1) {
-				question.textContent = easyQuestions[counter]["question"];
-				for (var i = 0; i < 4; i++) {
-					answerButtons[i].value = easyQuestions[counter]["choices"][i];
-				}
-		} else if (diff === 2) {
-				question.textContent = mediumQuestions[counter]["question"];
-				for (var i = 0; i < 4; i++) {
-					answerButtons[i].textContent = mediumQuestions[counter]["choices"][i];
-				}
-		} else if (diff === 3) {
-				question.textContent = hardQuestions[counter]["question"];
-				for (var i = 0; i < 4; i++) {
-					answerButtons[i].textContent = hardQuestions[counter]["choices"][i];
-				}
-		}
+		if (counter < 5) {
+            if (diff === 1) {
+                    question.textContent = easyQuestions[counter]["question"];
+                    for (var i = 0; i < 4; i++) {
+                        answerButtons[i].value = easyQuestions[counter]["choices"][i];
+                    }
+            } else if (diff === 2) {
+                    question.textContent = mediumQuestions[counter]["question"];
+                    for (var i = 0; i < 4; i++) {
+                        answerButtons[i].textContent = mediumQuestions[counter]["choices"][i];
+                    }
+            } else if (diff === 3) {
+                    question.textContent = hardQuestions[counter]["question"];
+                    for (var i = 0; i < 4; i++) {
+                        answerButtons[i].textContent = hardQuestions[counter]["choices"][i];
+                    }
+            }
+        } else {
+            question.textContent = "You have reached the end of the quiz!";
+            check.disabled = true;
+            for (var j = 0; j < 4; j++) {
+                answerButtons[j].style.visibility = "hidden";
+		    }
+        }
 		
 	}
 	
