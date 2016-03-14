@@ -79,6 +79,7 @@
 	var missed = document.getElementById("missed");
 	var check = document.getElementById("submit");
 	var next = document.getElementById("next");
+    var label = document.getElementsByClassName("guessLabel")
 
 	for (var i = 0; i < 4; i++) {
 			answerButtons[i].style.visibility = "hidden";
@@ -125,17 +126,17 @@
 		if (diff === 1) {
 				question.textContent = easyQuestions[counter]["question"];
 				for (var i = 0; i < 4; i++) {
-					answerButtons[i].textContent = easyQuestions[counter]["choices"][i];
+					label[i].textContent = easyQuestions[counter]["choices"][i];
 				}
 		} else if (diff === 2) {
 				question.textContent = mediumQuestions[counter]["question"];
 				for (var i = 0; i < 4; i++) {
-					answerButtons[i].textContent = mediumQuestions[counter]["choices"][i];
+					label[i].textContent = mediumQuestions[counter]["choices"][i];
 				}
 		} else if (diff === 3) {
 				question.textContent = hardQuestions[counter]["question"];
 				for (var i = 0; i < 4; i++) {
-					answerButtons[i].textContent = hardQuestions[counter]["choices"][i];
+					label[i].textContent = hardQuestions[counter]["choices"][i];
 				}
 		}
 		
@@ -203,7 +204,8 @@
 		
 		for (var i = 0; i < 4; i++) {
 			answerButtons[i].checked = false;
-			answerButtons[i].textContent = "";
+            answerButtons[i].style.visibility = "hidden";
+            label[i].textContent = "";
 		}
 		
 		start.disabled = false;
