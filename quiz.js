@@ -111,19 +111,21 @@
 		}
 		
   }
-  
-  function startQuiz() {
-		
-		next.disabled = true;
-		start.disabled = true;
-		check.disabled = false;
-		getDifficulty();
-		
-		for (var i = 0; i < 4; i++) {
-			answerButtons[i].style.visibility = "visible";
-		}
-		
-		if (diff === 1) {
+    
+    function radioHidden() {
+        for (var i = 0; i < 4; i++) {
+            answerButtons[i].style.visibility = "hidden"
+        }
+    }
+    
+    function radioVis() {
+        for (var i = 0; i < 4; i++) {
+            answerButtons[i].style.visibility = "visible"
+        }
+    }
+    
+    function radioGuess() {
+        if (diff === 1) {
 				question.textContent = easyQuestions[counter]["question"];
 				for (var i = 0; i < 4; i++) {
 					label[i].textContent = easyQuestions[counter]["choices"][i];
@@ -139,6 +141,17 @@
 					label[i].textContent = hardQuestions[counter]["choices"][i];
 				}
 		}
+    }
+  
+  function startQuiz() {
+		
+		next.disabled = true;
+		start.disabled = true;
+		check.disabled = false;
+      
+		getDifficulty();
+		radioVis();
+		radioGuess()
 		
 	}
 	
@@ -146,12 +159,20 @@
         
         check.disabled = true;
         
-		for (var i =  0; i < 4; i++) {
-            
-        }
+		for (var i = 0; i < 4; i++) {
+            if (answerButtons[i] === true) {
+                if (diff === 1) {
+                    if (answerButtons.value === easeQuestions[counter][correctAnswer]) {
+                        correct++;
+                    }
+                }
+            }
+        };
 		
 		correct.textContent = right;
 		missed.textContent = wrong;
+        
+        next.disabled = false;
 		
 	}
 	 
@@ -166,28 +187,14 @@
 			answerButtons[i].checked = false;
 		}
 		if (counter < 5) {
-            if (diff === 1) {
-                    question.textContent = easyQuestions[counter]["question"];
-                    for (var i = 0; i < 4; i++) {
-                        answerButtons[i].value = easyQuestions[counter]["choices"][i];
-                    }
-            } else if (diff === 2) {
-                    question.textContent = mediumQuestions[counter]["question"];
-                    for (var i = 0; i < 4; i++) {
-                        answerButtons[i].textContent = mediumQuestions[counter]["choices"][i];
-                    }
-            } else if (diff === 3) {
-                    question.textContent = hardQuestions[counter]["question"];
-                    for (var i = 0; i < 4; i++) {
-                        answerButtons[i].textContent = hardQuestions[counter]["choices"][i];
-                    }
-            }
+            radioGuess();
         } else {
             question.textContent = "You have reached the end of the quiz!";
             check.disabled = true;
-            for (var j = 0; j < 4; j++) {
-                answerButtons[j].style.visibility = "hidden";
-		    }
+            for (var i = 0; i < 4; i++) {
+                label[i].textContent = ""
+            }
+            radioHidden();
         }
 		
 	}
@@ -198,13 +205,15 @@
 		wrong = 0;
 		diff = 0;
 		counter = 0;
+        
 		question.textContent = "";
 		correct.textContent = right;
 		missed.textContent = wrong;
+        
+        radioHidden();
 		
 		for (var i = 0; i < 4; i++) {
 			answerButtons[i].checked = false;
-            answerButtons[i].style.visibility = "hidden";
             label[i].textContent = "";
 		}
 		
@@ -214,4 +223,4 @@
 		
 	}
   
-})()
+})();
