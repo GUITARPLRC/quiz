@@ -79,10 +79,10 @@
 	var missed = document.getElementById("missed");
 	var check = document.getElementById("submit");
 	var next = document.getElementById("next");
-    var label = document.getElementsByClassName("guessLabel")
+  var label = document.getElementsByClassName("guessLabel")
 
 	for (var i = 0; i < 4; i++) {
-			answerButtons[i].style.visibility = "hidden";
+		answerButtons[i].style.visibility = "hidden";
 	}
 	
 	check.disabled = true;
@@ -125,22 +125,22 @@
     }
     
     function radioGuess() {
-        if (diff === 1) {
+      if (diff === 1) {
 				question.textContent = easyQuestions[counter]["question"];
 				for (var i = 0; i < 4; i++) {
 					label[i].textContent = easyQuestions[counter]["choices"][i];
 				}
-		} else if (diff === 2) {
-				question.textContent = mediumQuestions[counter]["question"];
-				for (var i = 0; i < 4; i++) {
-					label[i].textContent = mediumQuestions[counter]["choices"][i];
-				}
-		} else if (diff === 3) {
-				question.textContent = hardQuestions[counter]["question"];
-				for (var i = 0; i < 4; i++) {
-					label[i].textContent = hardQuestions[counter]["choices"][i];
-				}
-		}
+			} else if (diff === 2) {
+					question.textContent = mediumQuestions[counter]["question"];
+					for (var i = 0; i < 4; i++) {
+						label[i].textContent = mediumQuestions[counter]["choices"][i];
+					}
+			} else if (diff === 3) {
+					question.textContent = hardQuestions[counter]["question"];
+					for (var i = 0; i < 4; i++) {
+						label[i].textContent = hardQuestions[counter]["choices"][i];
+					}
+			}
     }
   
   function startQuiz() {
@@ -156,23 +156,43 @@
 	}
 	
 	function submitAnswer() {  //check answer check vs. correct answer
-        
-        check.disabled = true;
+    
+		var wrongGuess = 0;
+		
+    check.disabled = true;
         
 		for (var i = 0; i < 4; i++) {
-            if (answerButtons[i] === true) {
-                if (diff === 1) {
-                    if (answerButtons.value === easeQuestions[counter][correctAnswer]) {
-                        correct++;
-                    }
-                }
-            }
-        };
+      if (answerButtons[i] === true) {
+        if (diff === 1) {
+          if (answerButtons[i].value === easyQuestions[counter][correctAnswer]) {
+            correct++;
+          } else {
+						wrongGuess++;
+					}
+        } else if (diff === 2) {
+          if (answerButtons[i].value === mediumQuestions[counter][correctAnswer]) {
+            correct++;
+          } else {
+						wrongGuess++;
+					}
+        }else {
+          if (answerButtons[i].value === hardQuestions[counter][correctAnswer]) {
+            correct++;
+          } else {
+						wrongGuess++;
+					}
+        }
+      }
+    };
+		
+		if (wrongGuess > 0) {
+			wrong++;
+		}
 		
 		correct.textContent = right;
 		missed.textContent = wrong;
         
-        next.disabled = false;
+    next.disabled = false;
 		
 	}
 	 
@@ -180,7 +200,7 @@
 		
 		counter++;
 		
-        check.disabled = false;
+    check.disabled = false;
 		next.disabled = true;
             
 		for (var i = 0; i < 4; i++) {
@@ -192,7 +212,7 @@
             question.textContent = "You have reached the end of the quiz!";
             check.disabled = true;
             for (var i = 0; i < 4; i++) {
-                label[i].textContent = ""
+              label[i].textContent = ""
             }
             radioHidden();
         }
@@ -210,11 +230,11 @@
 		correct.textContent = right;
 		missed.textContent = wrong;
         
-        radioHidden();
+    radioHidden();
 		
 		for (var i = 0; i < 4; i++) {
 			answerButtons[i].checked = false;
-            label[i].textContent = "";
+      label[i].textContent = "";
 		}
 		
 		start.disabled = false;
