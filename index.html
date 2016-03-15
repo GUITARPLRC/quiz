@@ -20,6 +20,7 @@
 		<li>When done, click reset button to play again!</li>
 	</ul>
 	
+	<h4>Difficulty:</h4>
 	<input class="diff" name="diff" type="radio" value=1>Easy</input>
 	<input class="diff" name="diff" type="radio" value=2>Medium</input>
 	<input class="diff" name="diff" type="radio" value=3>Hard</input>
@@ -35,10 +36,12 @@
 	
 	<br />
 	
-	<input class="answer" type="radio" value=0><label class="guessLabel"></label></input>
-	<input class="answer" type="radio" value=1><label class="guessLabel"></label></input>
-	<input class="answer" type="radio" value=2><label class="guessLabel"></label></input>
-	<input class="answer" type="radio" value=3><label class="guessLabel"></label></input>
+	<form>
+		<input class="answer" type="radio" name="answer" value=0><label class="guessLabel"></label></input>
+		<input class="answer" type="radio" name="answer"  value=1><label class="guessLabel"></label></input>
+		<input class="answer" type="radio" name="answer"  value=2><label class="guessLabel"></label></input>
+		<input class="answer" type="radio" name="answer"  value=3><label class="guessLabel"></label></input>
+	</form>
 	
 	<br />
 	

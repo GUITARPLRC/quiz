@@ -162,22 +162,22 @@
     check.disabled = true;
         
 		for (var i = 0; i < 4; i++) {
-      if (answerButtons[i] === true) {
+      if (answerButtons[i].checked) {
         if (diff === 1) {
-          if (answerButtons[i].value === easyQuestions[counter][correctAnswer]) {
-            correct++;
+          if (Number(answerButtons[i].value) === easyQuestions[counter]["correctAnswer"]) {
+            right++;
           } else {
 						wrongGuess++;
 					}
         } else if (diff === 2) {
-          if (answerButtons[i].value === mediumQuestions[counter][correctAnswer]) {
-            correct++;
+          if (Number(answerButtons[i].value) === mediumQuestions[counter]["correctAnswer"]) {
+            right++;
           } else {
 						wrongGuess++;
 					}
         }else {
-          if (answerButtons[i].value === hardQuestions[counter][correctAnswer]) {
-            correct++;
+          if (Number(answerButtons[i].value) === hardQuestions[counter]["correctAnswer"]) {
+            right++;
           } else {
 						wrongGuess++;
 					}

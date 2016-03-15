@@ -3,3 +3,11 @@
 	padding:0;
 	text-align:center;
 }
+
+h4 {
+	margin-top:20px;
+}
+
+input[type="radio"] {
+	margin-left:20px;
+}
