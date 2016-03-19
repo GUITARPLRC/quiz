@@ -225,7 +225,7 @@
 		wrong = 0;
 		diff = 0;
 		counter = 0;
-        
+		
 		question.textContent = "";
 		correct.textContent = right;
 		missed.textContent = wrong;
