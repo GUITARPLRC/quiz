@@ -159,6 +159,8 @@
     
 		var wrongGuess = 0;
 		
+		
+		
     check.disabled = true;
         
 		for (var i = 0; i < 4; i++) {
