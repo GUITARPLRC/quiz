@@ -112,36 +112,36 @@
 		
   }
     
-    function radioHidden() {
-        for (var i = 0; i < 4; i++) {
-            answerButtons[i].style.visibility = "hidden"
-        }
-    }
-    
-    function radioVis() {
-        for (var i = 0; i < 4; i++) {
-            answerButtons[i].style.visibility = "visible"
-        }
-    }
-    
-    function radioGuess() {
-      if (diff === 1) {
-				question.textContent = easyQuestions[counter]["question"];
-				for (var i = 0; i < 4; i++) {
-					label[i].textContent = easyQuestions[counter]["choices"][i];
-				}
-			} else if (diff === 2) {
-					question.textContent = mediumQuestions[counter]["question"];
-					for (var i = 0; i < 4; i++) {
-						label[i].textContent = mediumQuestions[counter]["choices"][i];
-					}
-			} else if (diff === 3) {
-					question.textContent = hardQuestions[counter]["question"];
-					for (var i = 0; i < 4; i++) {
-						label[i].textContent = hardQuestions[counter]["choices"][i];
-					}
+	function radioHidden() {
+			for (var i = 0; i < 4; i++) {
+					answerButtons[i].style.visibility = "hidden"
 			}
-    }
+	}
+    
+	function radioVis() {
+			for (var i = 0; i < 4; i++) {
+					answerButtons[i].style.visibility = "visible"
+			}
+	}
+    
+	function radioGuess() {
+		if (diff === 1) {
+			question.textContent = easyQuestions[counter]["question"];
+			for (var i = 0; i < 4; i++) {
+				label[i].textContent = easyQuestions[counter]["choices"][i];
+			}
+		} else if (diff === 2) {
+				question.textContent = mediumQuestions[counter]["question"];
+				for (var i = 0; i < 4; i++) {
+					label[i].textContent = mediumQuestions[counter]["choices"][i];
+				}
+		} else if (diff === 3) {
+				question.textContent = hardQuestions[counter]["question"];
+				for (var i = 0; i < 4; i++) {
+					label[i].textContent = hardQuestions[counter]["choices"][i];
+				}
+		}
+	}
   
   function startQuiz() {
 		
@@ -159,12 +159,11 @@
     
 		var wrongGuess = 0;
 		
-		
-		
-    check.disabled = true;
+		var didAnswer = 0; // to check if user chose an answer
         
 		for (var i = 0; i < 4; i++) {
       if (answerButtons[i].checked) {
+				didAnswer =  1;
         if (diff === 1) {
           if (Number(answerButtons[i].value) === easyQuestions[counter]["correctAnswer"]) {
             right++;
@@ -185,7 +184,15 @@
 					}
         }
       }
-    };
+    }
+		
+		// check if answer was submitted
+		if (didAnswer === 1) {
+			check.disabled = true; // disable when answer is chosen
+			next.disabled = false; // enable when answer is chosen
+		} else {
+			alert("Please choose an answer");
+		}
 		
 		if (wrongGuess > 0) {
 			wrong++;
@@ -193,8 +200,6 @@
 		
 		correct.textContent = right;
 		missed.textContent = wrong;
-        
-    next.disabled = false;
 		
 	}
 	 
