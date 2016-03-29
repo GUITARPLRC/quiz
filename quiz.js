@@ -79,7 +79,9 @@
 	var missed = document.getElementById("missed");
 	var check = document.getElementById("submit");
 	var next = document.getElementById("next");
-  var label = document.getElementsByClassName("guessLabel")
+  var label = document.getElementsByClassName("guessLabel");
+	var guessForm = document.getElementById("guessForm");
+	var caution = document.getElementById("caution");
 
 	for (var i = 0; i < 4; i++) {
 		answerButtons[i].style.visibility = "hidden";
@@ -191,8 +193,11 @@
 		if (didAnswer === 1) {
 			check.disabled = true; // disable when answer is chosen
 			next.disabled = false; // enable when answer is chosen
+			guessForm.classList.remove("cautionBorder");
+			caution.style.visibility = "hidden";
 		} else {
-			alert("Please choose an answer");
+			caution.style.visibility = "visible";
+			guessForm.classList.add("cautionBorder");
 		}
 		
 		if (wrongGuess > 0) {
@@ -237,6 +242,8 @@
 		question.textContent = "";
 		correct.textContent = right;
 		missed.textContent = wrong;
+		caution.style.visibility = "hidden";
+		guessForm.classList.remove("cautionBorder");
         
     radioHidden();
 		
