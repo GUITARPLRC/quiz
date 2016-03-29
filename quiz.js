@@ -125,21 +125,22 @@
 	}
     
 	function radioGuess() {
-		if (diff === 1) {
+		if (diff === 3) {
+			question.textContent = hardQuestions[counter]["question"];
+			for (var i = 0; i < 4; i++) {
+				label[i].textContent = hardQuestions[counter]["choices"][i];
+			}
+		} else if (diff === 2) {
+			question.textContent = mediumQuestions[counter]["question"];
+			for (var i = 0; i < 4; i++) {
+				label[i].textContent = mediumQuestions[counter]["choices"][i];
+			}
+		} else {
+			diffButtons[0].checked = true;
 			question.textContent = easyQuestions[counter]["question"];
 			for (var i = 0; i < 4; i++) {
 				label[i].textContent = easyQuestions[counter]["choices"][i];
 			}
-		} else if (diff === 2) {
-				question.textContent = mediumQuestions[counter]["question"];
-				for (var i = 0; i < 4; i++) {
-					label[i].textContent = mediumQuestions[counter]["choices"][i];
-				}
-		} else if (diff === 3) {
-				question.textContent = hardQuestions[counter]["question"];
-				for (var i = 0; i < 4; i++) {
-					label[i].textContent = hardQuestions[counter]["choices"][i];
-				}
 		}
 	}
   
@@ -242,6 +243,9 @@
 		for (var i = 0; i < 4; i++) {
 			answerButtons[i].checked = false;
       label[i].textContent = "";
+		}
+		for (var i = 0; i < 3; i++) {
+			diffButtons[i].checked = false;
 		}
 		
 		start.disabled = false;
