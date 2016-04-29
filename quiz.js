@@ -222,7 +222,7 @@
 		if (counter < 5) {
       radioGuess();
     } else {
-			question.textContent = "You have reached the end of the quiz!";
+			question.textContent = "Congratulations! You have reached the end of the quiz!";
 			check.disabled = true;
 			for (var i = 0; i < 4; i++) {
 				label[i].textContent = ""
