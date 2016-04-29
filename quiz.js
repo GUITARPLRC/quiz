@@ -154,7 +154,14 @@
       
 		getDifficulty();
 		radioVis();
-		radioGuess()
+		radioGuess();
+		
+		if (localStorage.getItem("score")) {
+			var score = localStorage.getItem("score");
+			previous.textContent = score + "/5";
+		} else {
+			previous.textContent = "N/A";
+		}
 		
 	}
 	
@@ -261,7 +268,6 @@
 		}
 		
 		start.disabled = false;
-		next.disabled = true;
 		check.disabled = true;
 		
 	}
