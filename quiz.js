@@ -65,7 +65,6 @@
     choices: ["elephant", "horse", "dolphin", "dog"],
     correctAnswer: 3
   }];
-
   var diff = 0; //difficulty
 	var right = 0;
 	var wrong = 0;
@@ -121,12 +120,15 @@
 	}
     
 	function radioVis() {
+		
 			for (var i = 0; i < 4; i++) {
 					answerButtons[i].style.visibility = "visible"
 			}
+			
 	}
     
 	function radioGuess() {
+		
 		if (diff === 3) {
 			question.textContent = hardQuestions[counter]["question"];
 			for (var i = 0; i < 4; i++) {
@@ -144,6 +146,7 @@
 				label[i].textContent = easyQuestions[counter]["choices"][i];
 			}
 		}
+		
 	}
   
   function startQuiz() {
@@ -158,10 +161,9 @@
 		
 	}
 	
-	function submitAnswer() {  //check answer check vs. correct answer
+	function submitAnswer() {  //check user answer vs. correct answer
     
 		var wrongGuess = 0;
-		
 		var didAnswer = 0; // to check if user chose an answer
         
 		for (var i = 0; i < 4; i++) {
@@ -219,16 +221,23 @@
 		for (var i = 0; i < 4; i++) {
 			answerButtons[i].checked = false;
 		}
+		
 		if (counter < 5) {
-            radioGuess();
-        } else {
-            question.textContent = "You have reached the end of the quiz!";
-            check.disabled = true;
-            for (var i = 0; i < 4; i++) {
-              label[i].textContent = ""
-            }
-            radioHidden();
-        }
+      radioGuess();
+    } else {
+			question.textContent = "You have reached the end of the quiz!";
+			check.disabled = true;
+			for (var i = 0; i < 4; i++) {
+				label[i].textContent = ""
+			}
+			radioHidden();
+			
+			if (storageAvailable("localStorage")) {
+				var userName = prompt("What is your name?");
+				localStorage.setItem("name", userName);
+				localStorage.setItem("score", right);
+			}
+    }
 		
 	}
 	
@@ -251,6 +260,7 @@
 			answerButtons[i].checked = false;
       label[i].textContent = "";
 		}
+		
 		for (var i = 0; i < 3; i++) {
 			diffButtons[i].checked = false;
 		}
@@ -260,5 +270,22 @@
 		check.disabled = true;
 		
 	}
+	
+	// check if local storage is available
+	function storageAvailable(type) {
+		
+		try {
+			var storage = window[type];
+			var x = "__storage_test__";
+			storage.setItem(x, x);
+			storage.removeItem(x);
+			return true;
+		} catch (e) {
+			return false;
+		}
+		
+	}
+	
+	
   
 })();
