@@ -10,15 +10,23 @@
 
 	<h1>Quiz Time</h1>
 	
-	<h3>Directions:</h2>
+	<div id="container">
+		<h3><u>Your Score</u></h3>
+		<h5>Previous Score: <div id="previous"></div></h5>
+		<h4>Correct Answers: <div id="correct"></div></h4>
+		<h4>Wrong Answers: <div id="missed"></div></h4>
+	</div>
+	
+	<h3>Directions:</h3>
 	<ul>
 		<li>Choose Difficulty</li>
 		<li>Click 'Start Game' button</li>
 		<li>Guess the correct answer</li>
 		<li>Click 'Check Answer'</li>
-		<li>Click 'Next Question'</li>
 		<li>When done, click reset button to play again!</li>
 	</ul>
+	
+	<br />
 	
 	<h4>Difficulty:</h4>
 	<form name="diffForm">
@@ -29,31 +37,25 @@
 	
 	<br />
 	
-	<h4>Correct Answers: <div id="correct"></div></h4>
-	<h4>Wrong Answers: <div id="missed"></div></h4>
-	
-	<br />
-	
-	<div id="question"></div>
-	
-	<br />
-	
-	<form name="guessForm" id="guessForm">
-		<input class="answer" type="radio" name="answer" value=0><label class="guessLabel"></label></input>
-		<input class="answer" type="radio" name="answer"  value=1><label class="guessLabel"></label></input>
-		<input class="answer" type="radio" name="answer"  value=2><label class="guessLabel"></label></input>
-		<input class="answer" type="radio" name="answer"  value=3><label class="guessLabel"></label></input>
-	</form>
-	
-	<br />
-	
-	<div id="caution">*Please choose an answer before continuing</div>
+	<div id="container2">
+		<div id="question"></div>
+		
+		<br />
+		
+		<form name="guessForm" id="guessForm">
+			<input class="answer" type="radio" name="answer" value=0><label class="guessLabel"></label></input>
+			<input class="answer" type="radio" name="answer"  value=1><label class="guessLabel"></label></input>
+			<input class="answer" type="radio" name="answer"  value=2><label class="guessLabel"></label></input>
+			<input class="answer" type="radio" name="answer"  value=3><label class="guessLabel"></label></input>
+		</form>
+		
+		<div id="caution">*Please choose an answer before continuing</div>
+	</div>
 	
 	<br />
 	
 	<button id="start">Start Game</button>
 	<button id="submit">Check Answer</button>
-	<button id="next">Next Question</button>
 	<button id="reset">Reset All</button>
 
 

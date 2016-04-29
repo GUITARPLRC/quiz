@@ -21,7 +21,6 @@
     choices: ["Washington, D.C.", "Seattle", "Maryland", "Canada"],
     correctAnswer: 0
   }];
-
   var mediumQuestions = [{
     question: "What is James Bond's secret agent number?",
     choices: ["911", "80", "4", "007"],
@@ -40,10 +39,9 @@
     correctAnswer: 2
   }, {
     question: "Who is usually credited for the invention of the light bulb?",
-    choices: ["Thomas Edison", "Albert Einstein", "Geroge Washington", "Isaac Newton"],
+    choices: ["Thomas Edison", "Albert Einstein", "George Washington", "Isaac Newton"],
     correctAnswer: 0
   }];
-
   var hardQuestions = [{
     question: "What does the 'www' stand for in 'www.google.com'?",
     choices: ["webpage", "world wide web", "whiskey while working", "internet"],
@@ -61,7 +59,7 @@
     choices: ["Dodge Charger", "Dodge Neon", "Chevrolet Camaro", "Ford Thunderbird"],
     correctAnswer: 0
   }, {
-    question: "What kind of animal was Lassie",
+    question: "What kind of animal was Lassie?",
     choices: ["elephant", "horse", "dolphin", "dog"],
     correctAnswer: 3
   }];
@@ -81,13 +79,14 @@
   var label = document.getElementsByClassName("guessLabel");
 	var guessForm = document.getElementById("guessForm");
 	var caution = document.getElementById("caution");
+	var gameContainer = document.getElementById("container2");  // container for questions and answers
+	var previous = document.getElementById("previous"); // to set previous score
 
 	for (var i = 0; i < 4; i++) {
 		answerButtons[i].style.visibility = "hidden";
 	}
 	
 	check.disabled = true;
-	next.disabled = true;
 	
 	right = 0;
 	wrong = 0;
@@ -96,7 +95,6 @@
 		
 	start.addEventListener("click", startQuiz, false);
 	check.addEventListener("click", submitAnswer, false);
-	next.addEventListener("click", nextQuestion, false);
 	resetButton.addEventListener("click", resetAll, false);
 
   function getDifficulty() { //sets difficulty of questions
@@ -151,7 +149,6 @@
   
   function startQuiz() {
 		
-		next.disabled = true;
 		start.disabled = true;
 		check.disabled = false;
       
@@ -194,7 +191,6 @@
 		// check if answer was submitted
 		if (didAnswer === 1) {
 			check.disabled = true; // disable when answer is chosen
-			next.disabled = false; // enable when answer is chosen
 			guessForm.classList.remove("cautionBorder");
 			caution.style.visibility = "hidden";
 		} else {
@@ -209,6 +205,8 @@
 		correct.textContent = right;
 		missed.textContent = wrong;
 		
+		nextQuestion();
+		
 	}
 	 
 	function nextQuestion() {
@@ -216,7 +214,6 @@
 		counter++;
 		
     check.disabled = false;
-		next.disabled = true;
             
 		for (var i = 0; i < 4; i++) {
 			answerButtons[i].checked = false;
@@ -233,8 +230,6 @@
 			radioHidden();
 			
 			if (storageAvailable("localStorage")) {
-				var userName = prompt("What is your name?");
-				localStorage.setItem("name", userName);
 				localStorage.setItem("score", right);
 			}
     }
