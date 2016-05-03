@@ -156,7 +156,7 @@
 		radioVis();
 		radioGuess();
 		
-		if (localStorage.getItem("score")) {
+		if (localStorage.score >= 0) {
 			var score = localStorage.getItem("score");
 			previous.textContent = score + "/5";
 		} else {
@@ -171,7 +171,7 @@
 		var didAnswer = 0; // to check if user chose an answer
         
 		for (var i = 0; i < 4; i++) {
-      if (answerButtons[i].checked) {
+      if (answerButtons[i].checked === true) {
 				didAnswer =  1;
         if (diff === 1) {
           if (Number(answerButtons[i].value) === easyQuestions[counter]["correctAnswer"]) {
@@ -200,6 +200,9 @@
 			check.disabled = true; // disable when answer is chosen
 			guessForm.classList.remove("cautionBorder");
 			caution.style.visibility = "hidden";
+			correct.textContent = right;
+			missed.textContent = wrong;
+			nextQuestion();
 		} else {
 			caution.style.visibility = "visible";
 			guessForm.classList.add("cautionBorder");
@@ -208,11 +211,6 @@
 		if (wrongGuess > 0) {
 			wrong++;
 		}
-		
-		correct.textContent = right;
-		missed.textContent = wrong;
-		
-		nextQuestion();
 		
 	}
 	 
@@ -231,9 +229,11 @@
     } else {
 			question.textContent = "Congratulations! You have reached the end of the quiz!";
 			check.disabled = true;
+			
 			for (var i = 0; i < 4; i++) {
 				label[i].textContent = ""
 			}
+			
 			radioHidden();
 			
 			if (storageAvailable("localStorage")) {
