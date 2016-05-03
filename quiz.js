@@ -76,6 +76,7 @@
 	var missed = document.getElementById("missed");
 	var check = document.getElementById("submit");
 	var next = document.getElementById("next");
+	var back = document.getElementById("back");
   var label = document.getElementsByClassName("guessLabel");
 	var guessForm = document.getElementById("guessForm");
 	var caution = document.getElementById("caution");
@@ -87,6 +88,7 @@
 	}
 	
 	check.disabled = true;
+	back.disabled = true;
 	
 	right = 0;
 	wrong = 0;
@@ -94,6 +96,7 @@
 	missed.textContent = wrong;
 		
 	start.addEventListener("click", startQuiz, false);
+	back.addEventListener("click", goBack, false);
 	check.addEventListener("click", submitAnswer, false);
 	resetButton.addEventListener("click", resetAll, false);
 
@@ -112,9 +115,11 @@
   }
     
 	function radioHidden() {
+		
 			for (var i = 0; i < 4; i++) {
 					answerButtons[i].style.visibility = "hidden"
 			}
+			
 	}
     
 	function radioVis() {
@@ -129,20 +134,26 @@
 		
 		if (diff === 3) {
 			question.textContent = hardQuestions[counter]["question"];
+			
 			for (var i = 0; i < 4; i++) {
 				label[i].textContent = hardQuestions[counter]["choices"][i];
 			}
+			
 		} else if (diff === 2) {
 			question.textContent = mediumQuestions[counter]["question"];
+			
 			for (var i = 0; i < 4; i++) {
 				label[i].textContent = mediumQuestions[counter]["choices"][i];
 			}
+			
 		} else {
 			diffButtons[0].checked = true;
 			question.textContent = easyQuestions[counter]["question"];
+			
 			for (var i = 0; i < 4; i++) {
 				label[i].textContent = easyQuestions[counter]["choices"][i];
 			}
+			
 		}
 		
 	}
@@ -158,7 +169,7 @@
 		
 		if (localStorage.score >= 0) {
 			var score = localStorage.getItem("score");
-			previous.textContent = score + "/5";
+			previous.textContent = score + "/" + easyQuestions.length;
 		} else {
 			previous.textContent = "N/A";
 		}
@@ -192,8 +203,15 @@
 						wrongGuess++;
 					}
         }
-      }
+      } else {
+				continue;
+			}
+			
     }
+		
+		if (wrongGuess > 0) {
+			wrong++;
+		}
 		
 		// check if answer was submitted
 		if (didAnswer === 1) {
@@ -208,9 +226,13 @@
 			guessForm.classList.add("cautionBorder");
 		}
 		
-		if (wrongGuess > 0) {
-			wrong++;
-		}
+		back.disabled = false;
+		
+	}
+	
+	function goBack() {
+		
+		counter--;
 		
 	}
 	 
@@ -229,6 +251,7 @@
     } else {
 			question.textContent = "Congratulations! You have reached the end of the quiz!";
 			check.disabled = true;
+			back.disabled = true;
 			
 			for (var i = 0; i < 4; i++) {
 				label[i].textContent = ""
