@@ -161,6 +161,8 @@
   
   function startQuiz() {
 		
+		fadeIn();
+		
 		start.disabled = true;
 		check.disabled = false;
       
@@ -229,8 +231,6 @@
 		
 		back.disabled = false;
 		
-		fadeOut();
-		
 	}
 	
 	function goBack() {
@@ -241,6 +241,7 @@
 	 
 	function nextQuestion() {
 		
+		fadeOut();
 		fadeIn();
 		
 		counter++;
@@ -319,32 +320,32 @@
 	// fade in
 	function fadeIn() {
 		
-		fadeEl.style.opacity = 0;
+		var val = parseFloat(fadeEl.style.opacity);
 		
-		(function fade() {
-			
-			var val = parseFloat(fadeEl.style.opacity);
-			
-			if(!((val += 0.1) > 1)) {
-				fadeEl.style.opacity = val;
-				requestAnimationFrame(fade);
+		var timer = setInterval(function() {
+			if (val >= 1.0) {
+				clearInterval(timer);
 			}
-		})();
+			
+			val += 0.1;
+			fadeEl.style.opactiy = val;
+		}, 500);
 		
 	}
 	
 	// fade out
 	function fadeOut(){
 		
-		fadeEl.style.opacity = 1;
+		var val = parseFloat(fadeEl.style.opacity);
 		
-		(function fade() {
-			if ((fadeEl.style.opacity -= 0.1) < 0) {
-				fadeEl.style.display = "none";
-			} else {
-				requestAnimationFrame(fade);
+		var timer = setInterval(function() {
+			if (val <= 1.0) {
+				clearInterval(timer);
 			}
-		});
+			
+			val -= 0.1;
+			fadeEl.style.opactiy = val;
+		}, 500);
 		
 	}
 	
