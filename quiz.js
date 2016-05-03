@@ -77,6 +77,7 @@
 	var check = document.getElementById("submit");
 	var next = document.getElementById("next");
 	var back = document.getElementById("back");
+	var fadeEl = document.getElementById("fade");
   var label = document.getElementsByClassName("guessLabel");
 	var guessForm = document.getElementById("guessForm");
 	var caution = document.getElementById("caution");
@@ -228,6 +229,8 @@
 		
 		back.disabled = false;
 		
+		fadeOut();
+		
 	}
 	
 	function goBack() {
@@ -238,6 +241,8 @@
 	 
 	function nextQuestion() {
 		
+		fadeIn();
+		
 		counter++;
 		
     check.disabled = false;
@@ -246,7 +251,7 @@
 			answerButtons[i].checked = false;
 		}
 		
-		if (counter < 5) {
+		if (counter < easyQuestions.length) {
       radioGuess();
     } else {
 			question.textContent = "Congratulations! You have reached the end of the quiz!";
@@ -292,6 +297,7 @@
 		
 		start.disabled = false;
 		check.disabled = true;
+		back.disabled = true;
 		
 	}
 	
@@ -307,6 +313,38 @@
 		} catch (e) {
 			return false;
 		}
+		
+	}
+	
+	// fade in
+	function fadeIn() {
+		
+		fadeEl.style.opacity = 0;
+		
+		(function fade() {
+			
+			var val = parseFloat(fadeEl.style.opacity);
+			
+			if(!((val += 0.1) > 1)) {
+				fadeEl.style.opacity = val;
+				requestAnimationFrame(fade);
+			}
+		})();
+		
+	}
+	
+	// fade out
+	function fadeOut(){
+		
+		fadeEl.style.opacity = 1;
+		
+		(function fade() {
+			if ((fadeEl.style.opacity -= 0.1) < 0) {
+				fadeEl.style.display = "none";
+			} else {
+				requestAnimationFrame(fade);
+			}
+		});
 		
 	}
 	
