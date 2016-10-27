@@ -79,7 +79,6 @@
 		missed = document.getElementById("missed"),
 		check = document.getElementById("submit"),
 		next = document.getElementById("next"),
-		back = document.getElementById("back"),
 		label = document.getElementsByClassName("guessLabel"),
 		guessForm = document.getElementById("guessForm"),
 		caution = document.getElementById("caution"),
@@ -95,15 +94,13 @@
 	}
 
 	check.disabled = true;
-	back.disabled = true;
-
+	
 	right = 0;
 	wrong = 0;
 	correct.textContent = right;
 	missed.textContent = wrong;
 
 	start.addEventListener("click", startQuiz, false);
-	back.addEventListener("click", goBack, false);
 	check.addEventListener("click", submitAnswer, false);
 	resetButton.addEventListener("click", resetAll, false);
 
@@ -186,7 +183,7 @@
 			var myDiff = localStorage.getItem("diff");
 			previous.textContent = myDiff + ": " + score + "/" + easyQuestions.length; // in case number of questions change
 		} else {
-			previous.textContent = "N/A";
+			previous.textContent = "No Score Saved";
 		}
 
 	}
@@ -241,14 +238,6 @@
 			guessForm.classList.add("cautionBorder");
 		}
 
-		back.disabled = false;
-
-	}
-
-	function goBack() {
-
-		counter--;
-
 	}
 
 	function nextQuestion() {
@@ -266,7 +255,6 @@
 		} else {
 			question.textContent = "Congratulations! You have reached the end of the quiz!";
 			check.disabled = true;
-			back.disabled = true;
 
 			for (var i = 0; i < 4; i++) {
 				label[i].textContent = ""
@@ -314,7 +302,6 @@
 
 		start.disabled = false;
 		check.disabled = true;
-		back.disabled = true;
 
 	}
 

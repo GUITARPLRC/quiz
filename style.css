@@ -84,8 +84,6 @@ button:hover {
 }
 
 .progress {
-	display: flex;
-	justify-content: space-between;
 	margin: 0 auto 3% auto;
 	width: 50%;
 }
@@ -99,13 +97,9 @@ button:hover {
 	.container2 {
 		padding:10px 5px;
 	}
-	.answer {
+	#guessForm input {
 		display:block;
 		margin:20px 0 0 0;
-	}
-	.answer label {
-		display:inline;
-		vertical-align:top;
 	}
 	
 }
