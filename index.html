@@ -1,68 +1,75 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 
 	<title>Quiz Time</title>
+
+	<link rel="icon" href="../images/myLogo.ico">
+
 	<link rel="stylesheet" href="style.css">
 
 </head>
+
 <body>
 
 	<h1>Quiz Time</h1>
-	
-	<div id="container">
+
+	<div id="score" class="hide">
 		<h3><u>Your Score</u></h3>
 		<h5>Previous Score: <div id="previous"></div></h5>
 		<h4>Correct Answers: <div id="correct"></div></h4>
 		<h4>Wrong Answers: <div id="missed"></div></h4>
 	</div>
-	
-	<h3>Directions:</h3>
-	<ul>
-		<li>Choose Difficulty</li>
-		<li>Click 'Start Game' button</li>
-		<li>Guess the correct answer</li>
-		<li>Click 'Check Answer'</li>
-		<li>When done, click 'Start Over' button to play again!</li>
-	</ul>
-	
-	<br />
-	
+
+	<div id="directions">
+		<h3>Directions:</h3>
+		<ul>
+			<li>Choose Difficulty</li>
+			<li>Click 'Start Game' button</li>
+			<li>Guess the correct answer</li>
+			<li>Click 'Check Answer'</li>
+			<li>When done, click 'Start Over' button to play again!</li>
+		</ul>
+	</div>
+
 	<h4>Difficulty:</h4>
-	<form name="diffForm">
+	<form id="diffForm" name="diffForm">
 		<input class="diff" name="diff" type="radio" value=1>Easy</input>
 		<input class="diff" name="diff" type="radio" value=2>Medium</input>
 		<input class="diff" name="diff" type="radio" value=3>Hard</input>
 	</form>
-	
-	<br />
-	
+
 	<div id="container2">
-		<div id="fade">
-			<div id="question"></div>
-			
-			<br />
-			
-			<form name="guessForm" id="guessForm">
-				<input class="answer" type="radio" name="answer" value=0><label class="guessLabel"></label></input>
-				<input class="answer" type="radio" name="answer"  value=1><label class="guessLabel"></label></input>
-				<input class="answer" type="radio" name="answer"  value=2><label class="guessLabel"></label></input>
-				<input class="answer" type="radio" name="answer"  value=3><label class="guessLabel"></label></input>
-			</form>
-			
-			<div id="caution">*Please choose an answer before continuing</div>
-		</div>
+		<div id="question"></div>
+
+		<form name="guessForm" id="guessForm">
+			<input class="answer" type="radio" name="answer" value=0>
+				<label class="guessLabel"></label>
+			<input class="answer" type="radio" name="answer" value=1>
+				<label class="guessLabel"></label>
+			<input class="answer" type="radio" name="answer" value=2>
+				<label class="guessLabel"></label>
+			<input class="answer" type="radio" name="answer" value=3>
+				<label class="guessLabel"></label>
+		</form>
+
+		<div id="caution">*Please choose an answer before continuing</div>
 	</div>
-	
-	<br />
-	
-	<button id="start">Start Game</button>
-	<button id="back">Back</button>
-	<button id="submit">Next</button></button>
-	<button id="reset">Start Over</button>
+
+	<div class="progress">
+		<button id="back">Back</button>
+		<button id="submit">Next</button>
+	</div>
+
+	<div class="begin">
+		<button id="start">Start Game</button>
+		<button id="reset">Start Over</button>
+	</div>
 
 
 
 	<script src="quiz.js"></script>
 </body>
+
 </html>
