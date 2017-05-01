@@ -1,7 +1,8 @@
 * {
+	font-family:sans-serif;
 	margin: 0;
 	padding: 0;
-	text-align: center;
+	text-align:center;
 }
 
 body {
@@ -12,20 +13,12 @@ body >:disabled {
 	cursor: not-allowed;
 }
 
-#score {
-	border: 2px solid #000;
-	border-radius: 10px;
-	padding: 5px 10px;
-	background-color: #ecf0f1;
-	margin: 0 auto;
-	width: 30%;
-}
-
 h1 {
 	margin-top: 30px;
 }
 
 h3 {
+	font-size:24px;
 	margin-top: 10px;
 }
 
@@ -41,9 +34,73 @@ input[type="radio"] {
 	margin-left: 20px;
 }
 
+ul li {
+	list-style-type:none;
+}
+
+.hide {
+	display:none;
+}
+
+#info {
+	display:flex;
+	justify-content:space-around;
+}
+
+#score {
+	flex:2;
+	order:1;
+}
+#displayScore {
+	font-size:20px;
+}
+#previous {
+	font-size:20px;
+}
+#previousScore {
+	flex:2;
+	order:3;
+}
+#directions {
+	flex:1;
+	margin:1% 0;
+	order:2;
+}
+#directions ul li {
+	font-size:20px;
+}
+#toggleDirections {
+	margin:1% 0 0 0;
+	width: auto;
+}
+
+#difficulty {
+	font-size:20px;
+}
+
+#container {
+	border: 2px solid #000;
+	background-color: #ecf0f1;
+	margin: 20px auto;
+	padding: 15px 10px;
+	text-align: center;
+	width: 50%;
+}
+
+#question {
+	font-size:20px;
+	font-weight: 600;
+}
+
 #guessForm {
-	display: inline-block;
+	font-size:20px;
 	margin: 3% 0 0 0;
+}
+#guessForm .answerStyle {
+	margin:20px 0;
+}
+#guessForm .answerStyle input[type='radio'] {
+	width:30px;
 }
 
 .cautionBorder {
@@ -54,16 +111,11 @@ input[type="radio"] {
 	visibility: hidden;
 }
 
-#container2 {
-	border: 2px solid #000;
-	background-color: #ecf0f1;
-	margin: 20px auto;
-	padding: 15px 10px;
-	text-align: center;
-	width: 50%;
-}
-#question {
-	font-weight: 600;
+.begin {
+	display:flex;
+	justify-content:space-between;
+	margin:0 auto;
+	max-width: 50%;
 }
 
 button {
@@ -73,8 +125,6 @@ button {
 	font-size: 18px;
 	padding: 15px 10px;
 	outline: none;
-	min-width: 60px;
-	width: 20%;
 }
 
 button:hover {
@@ -88,18 +138,11 @@ button:hover {
 	width: 50%;
 }
 
-.hide {
-	display: none;
-}
-
-@media (max-width:980px) {
-	
-	.container2 {
-		padding:10px 5px;
+@media (max-width:650px) {
+	#container {
+		width:80%;
 	}
-	#guessForm input {
+	#info {
 		display:block;
-		margin:20px 0 0 0;
 	}
-	
 }

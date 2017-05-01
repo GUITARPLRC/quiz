@@ -82,9 +82,11 @@
 		label = document.getElementsByClassName("guessLabel"),
 		guessForm = document.getElementById("guessForm"),
 		caution = document.getElementById("caution"),
-		gameContainer = document.getElementById("container2"), // container for questions and answers
+		gameContainer = document.getElementById("container"), // container for questions and answers
 		previous = document.getElementById("previous"), // to set previous score
 		directions = document.getElementById('directions'),
+		directionList = document.getElementById('directionList'),
+		toggleDirections = document.getElementById('toggleDirections'),
 		score = document.getElementById('score'),
 		answers = [];
 
@@ -94,15 +96,16 @@
 	}
 
 	check.disabled = true;
-	
+
 	right = 0;
 	wrong = 0;
 	correct.textContent = right;
 	missed.textContent = wrong;
 
-	start.addEventListener("click", startQuiz, false);
-	check.addEventListener("click", submitAnswer, false);
-	resetButton.addEventListener("click", resetAll, false);
+	start.addEventListener("click", startQuiz);
+	check.addEventListener("click", submitAnswer);
+	resetButton.addEventListener("click", resetAll);
+	toggleDirections.addEventListener("click", toggleDirect);
 
 	function getDifficulty() { //sets difficulty of questions
 
@@ -162,14 +165,26 @@
 
 	}
 
-	function hide() {
-		directions.classList.add('hide');
-		score.classList.remove("hide");
+	function hideDirections() {
+		directionList.classList.add('hide');
+	}
+	function showDirections() {
+		directionList.classList.remove('hide');
+	}
+
+	function toggleDirect() {
+		if (directionList.classList.contains('hide')) {
+			showDirections();
+			toggleDirections.textContent = "Hide Directions";
+		} else {
+			hideDirections();
+			toggleDirections.textContent = "Show Directions";
+		}
 	}
 
 	function startQuiz() {
 
-		hide();
+		hideDirections();
 
 		start.disabled = true;
 		check.disabled = false;
@@ -181,7 +196,7 @@
 		if (localStorage.score >= 0) {
 			var score = localStorage.getItem("score");
 			var myDiff = localStorage.getItem("diff");
-			previous.textContent = myDiff + ": " + score + "/" + easyQuestions.length; // in case number of questions change
+			previous.textContent = myDiff + " : " + score + " / " + easyQuestions.length; // in case number of questions change
 		} else {
 			previous.textContent = "No Score Saved";
 		}
